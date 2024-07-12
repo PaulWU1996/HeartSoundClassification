@@ -90,7 +90,7 @@ class DataInterface(pl.LightningDataModule):
         return torch.utils.data.DataLoader(self.train, batch_size=self.batch_size, shuffle=True)
 
     def val_dataloader(self):
-        return torch.utils.data.DataLoader(self.train, batch_size=self.batch_size) # no need to change back
+        return torch.utils.data.DataLoader(self.val, batch_size=self.batch_size)
 
 
 class HeartSound(nn.Module):
@@ -208,15 +208,4 @@ trainer = pl.Trainer(
     )
 
 trainer.fit(model, data)
-
-
-
-
-# data.setup()
-# feat, label = data.train_dataloader().__iter__().__next__()
-# model = HeartSound()
-# output = model(feat)
-
-
-# print(output.shape)
 
